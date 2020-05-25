@@ -1,0 +1,31 @@
+<!--pages/authentication/index.wxml-->
+<view class="container">
+  <image class="page-bgn" src="../../static/images/pageBgn.png"></image>
+  <view class="text-box">
+    <text>上传身份证的正反面照片，注意反光，保证身份证内容清晰可见</text>
+  </view>
+  <view class="uploda-box">
+    <view class="img-box">
+      <image src="{{positiveImg}}"></image>
+    </view>
+    <view>
+      <button class="{{btn1Text == '拍照' ? '.btn' : '.btn-normal'}}" data-index="1" bindtap="openCamera">{{btn1Text}}</button>
+    </view>
+    <view class="img-box">
+      <image src="{{ReverseImg}}"></image>
+    </view>
+    <view>
+      <button class="{{btn2Text == '拍照' ? '.btn' : '.btn-normal'}}" data-index="2" bindtap="openCamera">{{btn2Text}}</button>
+    </view>
+  </view>
+  <view>
+    <button class="next-btn" bindtap="next">下一步</button>
+  </view>
+  <view class="camera-box" wx:if="{{camera}}">
+    <camera wx:if="{{!show}}" device-position="back" flash="off" binderror="error"></camera>
+    <image wx:if="{{show}}" class="camera_img" src="{{src}}"></image>
+    <button wx:if="{{!show}}" class="next-btn" bindtap="takePhoto">{{cameraText}}</button>
+    <button wx:if="{{show}}" class="next-btn" bindtap="saveImg">上传照片</button>
+    <button wx:if="{{show}}" class="next-btn" bindtap="cancelBtn">重新拍照</button>
+  </view>
+</view>

@@ -1,0 +1,11 @@
+<!--pages/authentication/index.wxml-->
+<view class="container">
+  <image class="page-bgn" src="../../static/images/pageBgn.png"></image>
+  <view class="end-box">
+    <image class="end-img" src="../../static/images/end.png"></image>
+    <view class="end-title">房贷LPR转换完成！</view>
+  </view>
+  <view>
+    <button class="btn" bindtap="end">确定</button>
+  </view>
+</view>

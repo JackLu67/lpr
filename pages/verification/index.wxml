@@ -1,0 +1,33 @@
+<!--pages/authentication/index.wxml-->
+<view class="container">
+  <image class="page-bgn" src="../../static/images/pageBgn.png"></image>
+  <view class="sign-box">
+    <view class="sign-title">手写签字:</view>
+    <view class="sign-content">
+    </view>
+  </view>
+  <view class="form-box">
+    <form>
+      <view class="item">
+        <view>
+          <image src="../../static/images/phone.png"></image>
+          <text class="text">手机</text>
+        </view>
+        <input class="weui-input my-input" placeholder-class="place-holder" name="input" placeholder="请输入您的手机号" />
+      </view>
+      <view class="item" style="margin-top: 40rpx;">
+        <view>
+          <image src="../../static/images/code.png"></image>
+          <text class="text">验证码</text>
+        </view>
+        <view class="code-box">
+          <input class="weui-input my-input" placeholder-class="place-holder" name="input" placeholder="请输入验证码" />
+          <button size="mini"  type="default" plain="true" bindtap="openPageInfo" style="border-color:#e8e7ea;color:#333;font-size: 24rpx;padding: 20rpx 30rpx;">获取验证码</button>
+        </view>
+      </view>
+    </form>
+  </view>
+  <view>
+    <button class="btn" bindtap="end">确定</button>
+  </view>
+</view>

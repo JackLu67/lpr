@@ -1,0 +1,58 @@
+page {
+  background-color: rgb(255, 227, 0);
+}
+.page-bgn {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.index-bgn {
+  width: 100%;
+  height: 600rpx;
+}
+.notice-box {
+  margin: 0 auto;
+  margin-top: -60rpx;
+  padding: 26rpx;
+  width: 640rpx;
+  height: 595rpx;
+  overflow: hidden;
+  overflow-y: auto;
+  border: 1rpx solid rgba(237,30,37, .47);
+  box-shadow: 0rpx 4rpx 4rpx rgba(35, 31, 32, 0.33);
+  box-sizing: border-box;
+}
+.main-title {
+  font-size: 24rpx;
+  text-align: center;
+}
+.scroll-box {
+  height: 100%;
+  font-size: 24rpx;
+}
+
+.check-box {
+  width: 640rpx;
+  margin: 28rpx auto;
+}
+.check-box text {
+  font-size: 24rpx;
+  color: #000;
+}
+.btn {
+  padding: 0 !important;
+  width: 640rpx !important;
+  height: 80rpx !important;
+  line-height: 80rpx !important;
+  font-weight: normal !important;
+  margin: 0 auto;
+  margin-bottom: 30rpx;
+  letter-spacing: 28rpx;
+  color: #fff;
+  background-color: #ed1e25;
+}
+.wx-checkbox-input {
+  width: 30rpx !important;
+  height: 30rpx !important;
+  border-color: #000 !important;
+}

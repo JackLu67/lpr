@@ -1,0 +1,21 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/authentication/index",
+    "pages/person/index",
+    "pages/loanlist/index",
+    "pages/loanInfo/index",
+    "pages/agreement/index",
+    "pages/verification/index",
+    "pages/end/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#DC143C",
+    "navigationBarTitleText": "LPR利率转换系统",
+    "navigationBarTextStyle": "white"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,74 @@
+/* pages/authentication/index.wxss */
+page {
+  width: 100%;
+  height: 100%;
+}
+.container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.page-bgn {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.sign-box {
+  width: 690rpx;
+  margin: 0 auto;
+}
+.sign-title {
+  font-size: 34rpx;
+  color: #333;
+  padding: 30rpx 0;
+}
+.sign-content {
+  width: 690rpx;
+  height: 340rpx;
+  border-radius: 10rpx;
+  background-color: #fff;
+  border: 1rpx solid #ed1e25;
+}
+.form-box {
+  width: 640rpx;
+  margin: 0 auto;
+  margin-top: 90rpx;
+}
+image {
+  width: 30rpx;
+  height: 35rpx;
+  margin-right: 20rpx;
+  vertical-align: middle;
+}
+.text {
+  vertical-align: middle;
+}
+.my-input {
+  padding: 30rpx 0;
+  padding-left: 40rpx;
+  border-bottom: 1rpx solid #eee;
+  font-size: 26rpx;
+}
+.code-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.code-box .my-input {
+  flex: 1;
+}
+.place-holder {
+  font-size: 26rpx;
+}
+.btn {
+  padding: 0 !important;
+  width: 640rpx !important;
+  height: 80rpx !important;
+  line-height: 80rpx !important;
+  font-weight: normal !important;
+  margin: 0 auto;
+  letter-spacing: 28rpx;
+  margin-top: 90rpx;
+  color: #fff;
+  background-color: #ed1e25;
+}

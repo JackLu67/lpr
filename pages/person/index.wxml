@@ -1,0 +1,27 @@
+<!--pages/authentication/index.wxml-->
+<view class="container">
+  <image class="page-bgn" src="../../static/images/pageBgn.png"></image>
+  <view class="form-box">
+    <form>
+      <view class="item">
+        <text class="title">姓名</text>
+        <input class="weui-input my-input" name="input" value="张三" />
+      </view>
+      <view class="item">
+        <text class="title">身份证号</text>
+        <input class="weui-input my-input" name="input" value="520223199908080088" />
+      </view>
+      <view class="item">
+        <text class="title">身份证有效期</text>
+        <input class="weui-input my-input" name="input" value="10" />
+      </view>
+      <view class="item">
+        <text class="title">住址</text>
+        <input class="weui-input my-input" name="input" value="北京市" />
+      </view>
+    </form>
+  </view>
+  <view>
+    <button class="btn" bindtap="next">开始人脸识别</button>
+  </view>
+</view>

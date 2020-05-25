@@ -1,0 +1,64 @@
+/* pages/loanInfo/index.wxss */
+page {
+  width: 100%;
+  height: 100%;
+}
+.container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.page-bgn {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -999;
+}
+.list-box {
+  width: 690rpx;
+  margin: 0 auto;
+  background: #fff;
+}
+.item-box {
+  margin-top: 30rpx;
+  padding: 30rpx 20rpx;
+  border-radius: 10rpx;
+  border: 1rpx solid #eee;
+  box-shadow: 0px 6rpx 6rpx rgba(0,0,0,0.18)/*阴影出现在元素下方*/
+}
+.item-top {
+  display: flex;
+  border-bottom: 1rpx solid #eee;
+}
+.top-left {
+  flex: 1;
+}
+.title {
+  font-size: 28rpx;
+  color: #000;
+  font-weight: bold;
+}
+.loan-person {
+  margin: 30rpx 0;
+  color: #999;
+  font-size: 24rpx;
+}
+.loan-person text {
+  font-size: 24rpx;
+  color: #333;
+}
+.top-right button {
+  font-size: 24rpx !important;
+}
+.item-bottom {
+  padding-top: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  font-size: 24rpx;
+}
+.amount-text {
+  color: #999;
+}
+.amount-num {
+  color: #333;
+}

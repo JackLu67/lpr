@@ -1,0 +1,85 @@
+/* pages/authentication/index.wxss */
+page {
+  width: 100%;
+  height: 100%;
+}
+.container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.page-bgn {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.text-box {
+  text-align: center;
+  font-size: 24rpx;
+  margin-top: 40rpx;
+  color: #595757;
+}
+.img-box {
+  width: 495rpx;
+  height: 296rpx;
+  margin: 44rpx auto;
+  position: relative;
+}
+image {
+  width: 100%;
+  height: 100%;
+}
+.btn {
+  padding: 0 !important;
+  width: 492rpx !important;
+  height: 63rpx !important;
+  line-height: 63rpx !important;
+  font-weight: normal !important;
+  margin: 0 auto;
+  letter-spacing: 28rpx;
+  color: #fff;
+  background-color: #ed1e25;
+}
+.btn-normal {
+  padding: 0 !important;
+  width: 492rpx !important;
+  height: 63rpx !important;
+  line-height: 63rpx !important;
+  font-weight: normal !important;
+  margin: 0 auto;
+  letter-spacing: 28rpx;
+  color: #ed1e25;
+  border: 1rpx solid #ed1e25;
+  background-color: transparent;
+}
+.next-btn {
+  padding: 0 !important;
+  width: 640rpx !important;
+  height: 80rpx !important;
+  line-height: 80rpx !important;
+  font-weight: normal !important;
+  margin: 0 auto;
+  margin-top: 58rpx;
+  letter-spacing: 28rpx;
+  color: #fff;
+  background-color: #ed1e25;
+}
+.camera-box {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: #fff;
+}
+camera {
+  height: 396rpx;
+  width: 640rpx;
+  margin: 0 auto;
+}
+.camera_img {
+  height: 396rpx;
+  width: 640rpx;
+  display: block;
+  margin: 0 auto;
+}
