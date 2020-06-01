@@ -24,7 +24,11 @@ page {
 }
 .main-title {
   font-size: 24rpx;
-  text-align: center;
+  display: inline-block;
+}
+.sub-title {
+  margin-top: 20rpx;
+  display: inline-block;
 }
 .scroll-box {
   height: 100%;

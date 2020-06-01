@@ -22,7 +22,7 @@
         </view>
         <view class="code-box">
           <input class="weui-input my-input" placeholder-class="place-holder" name="input" placeholder="请输入验证码" />
-          <button size="mini"  type="default" plain="true" bindtap="openPageInfo" style="border-color:#e8e7ea;color:#333;font-size: 24rpx;padding: 20rpx 30rpx;">获取验证码</button>
+          <button size="mini" disabled="{{!flag}}" type="default" plain="true" bindtap="getCode" style="border-color:#e8e7ea;color:#333;font-size: 24rpx;padding: 20rpx 30rpx;">{{codeTetx}}</button>
         </view>
       </view>
     </form>

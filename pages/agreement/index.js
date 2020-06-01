@@ -12,10 +12,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // wx.openDocument({
-    //   filePath: '.././../static/images/test.pdf',
-    //   success: function (res) {
-    //     console.log('打开文档成功')
+    // wx.downloadFile({
+    //   url: 'http://example.com/somefile.pdf',
+    //   success: function(res) {
+    //     const filePath = res.tempFilePath
+    //     wx.openDocument({
+    //       filePath: filePath,
+    //       success: function(res) {
+    //         console.log('打开文档成功')
+    //       }
+    //     })
     //   }
     // })
   },
@@ -67,5 +73,20 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  previePDF() {
+    wx.downloadFile({
+      url: 'url',
+      success: res => {
+        console.log(res)
+        var filePath = res.tempFilePath
+        wx.openDocument({
+          filePath: filePath,
+          success: res => {
+            console.log('打开成功')
+          }
+        })
+      }
+    })
   }
 })

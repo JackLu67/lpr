@@ -5,7 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    codeTetx: '获取验证码',
+    i: 60,
+    n: 1,
+    flag: true
   },
 
   /**
@@ -63,9 +66,37 @@ Page({
   onShareAppMessage: function () {
 
   },
+  getCode() {
+    // console.log(1)
+    var that = this
+    that.setData({
+      codeTetx: '已发送，'+that.data.i + 's',
+      flag: false
+    })
+    that.count()
+  },
   end() {
     wx.navigateTo({
       url: '../end/index',
     })
+  },
+  count() {
+    var that = this
+    var timer = setInterval(() => {
+      var i = that.data.i - 1
+      if(i == 0) {
+        that.setData({
+          i: 60,
+          codeTetx: '获取验证码',
+          flag: true
+        })
+        clearInterval(timer)
+        return
+      }
+      that.setData({
+        i: i,
+        codeTetx: '已发送，'+ i + 's',
+      })
+    }, 1000)
   }
 })

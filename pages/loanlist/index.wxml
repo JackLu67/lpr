@@ -2,23 +2,27 @@
 <view class="container">
   <image class="page-bgn" src="../../static/images/pageBgn.png"></image>
   <view class="list-box">
-    <view class="item-box">
+    <view class="item-box" wx:for="{{loanList}}" wx:key="idx" wx:for-item="item">
       <view class="item-top">
         <view class="top-left">
           <view class="title">一手住房</view>
-          <view class="loan-person">主贷人： <text>张三</text></view>
-          <view class="loan-person">状态： <text style="color:#ed1e25">待转换</text></view>
+          <view class="loan-person">
+            <text>主贷人：{{item.borrowerName}}</text>
+            <text>共同借贷人：{{item.suretyName}}</text>
+          </view>
+          <view class="loan-status">状态： <text style="color:#ed1e25">{{item.signStateName}}</text></view>
         </view>
         <view class="top-right">
-          <button size="mini"  type="primary" plain="true" bindtap="openPageInfo">去转换</button>
+          <button wx:if="{{item.signStateName == '待签署'}}" size="mini"  type="primary" plain="true" data-id="{{item.uuid}}" bindtap="openPageInfo">去转换</button>
+          <button wx:else size="mini"  type="default" plain="true">已转换</button>
         </view>
       </view>
       <view class="item-bottom">
         <text class="amount-text">贷款发放金额</text>
-        <text class="amount-num">¥600000</text>
+        <text class="amount-num">¥{{item.loanMoney}}</text>
       </view>
     </view>
-    <view class="item-box">
+    <!-- <view class="item-box">
       <view class="item-top">
         <view class="top-left">
           <view class="title">一手住房</view>
@@ -33,6 +37,6 @@
         <text class="amount-text">贷款发放金额</text>
         <text class="amount-num">¥600000</text>
       </view>
-    </view>
+    </view> -->
   </view>
 </view>

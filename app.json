@@ -10,10 +10,15 @@
     "pages/verification/index",
     "pages/end/index"
   ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#DC143C",
-    "navigationBarTitleText": "LPR利率转换系统",
+    "navigationBarTitleText": "慈利农商行LPR利率转换",
     "navigationBarTextStyle": "white"
   },
   "style": "v2",

@@ -1,18 +1,19 @@
 // pages/loanlist/index.js
+const util = require('../../utils/util.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    loanList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getLoanList()
   },
 
   /**
@@ -63,9 +64,40 @@ Page({
   onShareAppMessage: function () {
 
   },
-  openPageInfo() {
+  openPageInfo(e) {
+    var that = this
+    var uuid = e.currentTarget.dataset.id
+    var item = that.data.loanList.find(item => item = uuid)
+    wx.setStorageSync('loanItem', item)
     wx.navigateTo({
       url: '../loanInfo/index',
     })
+  },
+  getLoanList() {
+    var that = this
+    util.requestPromise('/wx/loan/list').then(res => {
+      console.log(res)
+      if (res.data.code == 0) {
+        var data = that.normalData(res.data.data)
+        that.setData({
+          loanList: data
+        })
+      }
+    })
+  },
+  normalData(data) {
+    var arr = {
+      '00': '待签署',
+      1: '主贷人已签署',
+      2: '担保人已签署',
+      3: '已签署'
+    }
+    data.map(item => {
+      if (item.signState == null) {
+        item.signState = 0
+      }
+      item.signStateName = arr[item.signState]
+    })
+    return data
   }
 })

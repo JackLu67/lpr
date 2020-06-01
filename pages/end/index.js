@@ -62,5 +62,10 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  end() {
+    wx.navigateTo({
+      url: '../loanlist/index',
+    })
   }
 })

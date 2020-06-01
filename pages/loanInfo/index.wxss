@@ -20,6 +20,7 @@ form {
   margin-top: 30rpx;
 }
 .item {
+  font-size: 28rpx;
   padding: 0 30rpx;
   display: flex;
   justify-content: center;

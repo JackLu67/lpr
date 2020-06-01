@@ -5,23 +5,27 @@
     <form>
       <view class="item">
         <text class="title">姓名</text>
-        <input class="weui-input my-input" name="input" value="张三" />
+        <input class="weui-input my-input" name="input" value="{{personInfo.name}}" />
+      </view>
+      <view class="item">
+        <text class="title">性别</text>
+        <input class="weui-input my-input" name="input" value="{{personInfo.sex}}" />
       </view>
       <view class="item">
         <text class="title">身份证号</text>
-        <input class="weui-input my-input" name="input" value="520223199908080088" />
+        <input class="weui-input my-input" name="input" value="{{personInfo.idCard}}" />
       </view>
       <view class="item">
-        <text class="title">身份证有效期</text>
-        <input class="weui-input my-input" name="input" value="10" />
+        <text class="title">身份证有效期至</text>
+        <input class="weui-input my-input" name="input" value="{{personInfo.expiryDate}}" />
       </view>
       <view class="item">
         <text class="title">住址</text>
-        <input class="weui-input my-input" name="input" value="北京市" />
+        <input class="weui-input my-input" name="input" value="{{personInfo.koseki}}" />
       </view>
     </form>
   </view>
   <view>
-    <button class="btn" bindtap="next">开始人脸识别</button>
+    <button class="btn" bindtap="startFace">开始人脸识别</button>
   </view>
 </view>

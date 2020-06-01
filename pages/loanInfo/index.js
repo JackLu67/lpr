@@ -16,14 +16,20 @@ Page({
       }
     ],
     item: '每年初调整',
-    index: 0
+    index: 0,
+    itemInfo: null,
+    flag: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var item = wx.getStorageSync('loanItem')
+    console.log(item)
+    this.setData({
+      itemInfo: item
+    })
   },
 
   /**
@@ -85,5 +91,10 @@ Page({
     wx.navigateTo({
       url: '../agreement/index',
     })
-  }
+  },
+  next() {
+    wx.navigateTo({
+      url: '../verification/index',
+    })
+  },
 })

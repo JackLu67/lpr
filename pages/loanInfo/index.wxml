@@ -5,41 +5,45 @@
     <form>
       <view class="item">
         <text class="title">主贷人</text>
-        <input class="weui-input my-input" name="input" value="展示" />
+        <input disabled="true" class="weui-input my-input" name="input" value="{{itemInfo.borrowerName}}" />
       </view>
       <view class="item">
         <text class="title">身份证号</text>
-        <input class="weui-input my-input" name="input" value="展示" />
+        <input disabled="true" class="weui-input my-input" name="input" value="{{itemInfo.borrowerNo}}" />
       </view>
-      <view class="item">
+      <view wx:if="{{itemInfo.suretyName == null ? false : true}}" class="item">
         <text class="title">共同借款人</text>
-        <input class="weui-input my-input" name="input" value="展示" />
+        <input disabled="true" class="weui-input my-input" name="input" value="{{itemInfo.suretyName}}" />
       </view>
-      <view class="item">
+      <view wx:if="{{itemInfo.suretyName == null ? false : true}}" class="item">
         <text class="title">身份证号</text>
-        <input class="weui-input my-input" name="input" value="展示" />
+        <input disabled="true" class="weui-input my-input" name="input" value="{{itemInfo.suretyNo}}" />
       </view>
     </form>
     <form>
       <view class="item">
         <text class="title">产品名称</text>
-        <input class="weui-input my-input" name="input" value="展示" />
+        <input disabled="true" class="weui-input my-input" name="input" value="{{itemInfo.loanProductName}}" />
       </view>
       <view class="item">
         <text class="title">贷款金额</text>
-        <input class="weui-input my-input" name="input" value="展示" />
+        <input disabled="true" class="weui-input my-input" name="input" value="{{itemInfo.loanMoney}}" />
       </view>
       <view class="item">
         <text class="title">贷款期限</text>
-        <input class="weui-input my-input" name="input" value="展示" />
+        <input disabled="true" class="weui-input my-input" name="input" value="{{itemInfo.loanTime}}" />
       </view>
       <view class="item">
         <text class="title">贷款到期日期</text>
-        <input class="weui-input my-input" name="input" value="展示" />
+        <input disabled="true" class="weui-input my-input" name="input" value="{{itemInfo.loanTime}}" />
       </view>
       <view class="item">
         <text class="title">贷款利率</text>
-        <input class="weui-input my-input" name="input" value="展示" />
+        <input disabled="true" class="weui-input my-input" name="input" value="{{itemInfo.loanRate}}%" />
+      </view>
+      <view class="item">
+        <text class="title">签署状态</text>
+        <input disabled="true" class="weui-input my-input" name="input" value="{{itemInfo.signStateName}}" />
       </view>
     </form>
     <form>
@@ -54,13 +58,13 @@
       </view>
     </form>
   </view>
-  <view class="check-box">
+  <view class="check-box" wx:if="{{flag}}">
       <checkbox-group bindchange="checkboxChange">
         <checkbox value="0"/>
         <view>我已仔细阅读<text style="color:blue" bindtap="openPage">《房贷LPR转换协议》</text>并同意所有条款</view>
       </checkbox-group>
   </view>
-  <view>
-    <button class="btn">同意签署协议</button>
+  <view wx:if="{{flag}}">
+    <button class="btn" bindtap="next">同意签署协议</button>
   </view>
 </view>
