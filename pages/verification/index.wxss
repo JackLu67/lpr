@@ -32,7 +32,7 @@ page {
 .form-box {
   width: 640rpx;
   margin: 0 auto;
-  margin-top: 90rpx;
+  margin-top: 60rpx;
 }
 image {
   width: 30rpx;
@@ -71,4 +71,18 @@ image {
   margin-top: 90rpx;
   color: #fff;
   background-color: #ed1e25;
+}
+.btn1 {
+  padding: 0 !important;
+  width: 690rpx !important;
+  height: 80rpx !important;
+  line-height: 80rpx !important;
+  font-weight: normal !important;
+  margin: 0 auto;
+  letter-spacing: 28rpx;
+  margin-top: 40rpx;
+  color: #fff;
+  border: 1px solid #ed1e25;
+  background-color: #fff;
+  color: #ed1e25;
 }

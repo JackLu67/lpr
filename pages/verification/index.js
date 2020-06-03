@@ -8,7 +8,12 @@ Page({
     codeTetx: '获取验证码',
     i: 60,
     n: 1,
-    flag: true
+    flag: true,
+    context: null,
+    form: {
+      phoneNum: null,
+      code: null
+    }
   },
 
   /**
@@ -29,43 +34,22 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this
+    var context = wx.createCanvasContext('myCanvas')
+    that.setData({
+      context: context
+    })
+    context.draw()
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  // input与data数据双向绑定
+  bindInput(e) {
+    var that = this
+    var item = e.currentTarget.id
+    that.setData({
+      [item]: e.detail.value
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
+  // 获取验证码
   getCode() {
     // console.log(1)
     var that = this
@@ -75,11 +59,41 @@ Page({
     })
     that.count()
   },
-  end() {
-    wx.navigateTo({
-      url: '../end/index',
-    })
+  // 提交
+  submit() {
+    var that = this
+    var img = null
+    if (that.data.phoneNum == null) {
+      wx.showToast({
+        title: '请输入手机号码',
+        icon: 'none'
+      })
+      return
+    } else if (that.data.code == null) {
+      wx.showToast({
+        title: '请输入验证码',
+        icon: 'none'
+      })
+      return
+    }
+    // canvas转图片
+    that.data.context.draw(true, wx.canvasToTempFilePath({
+      x: 0,
+      y: 0,
+      fileType: 'jpg',
+      canvasId: 'myCanvas',
+      success: res => {
+        that.urlToBase64(res.tempFilePath).then(res => {
+          img = 'data:image/jpeg;base64,' + res.data
+          console.log(img)
+        })
+      }
+    }))
+    // wx.navigateTo({
+    //   url: '../end/index',
+    // })
   },
+  // 倒计时60S
   count() {
     var that = this
     var timer = setInterval(() => {
@@ -98,5 +112,30 @@ Page({
         codeTetx: '已发送，'+ i + 's',
       })
     }, 1000)
-  }
+  },
+  // 开始签字，记录坐标
+  startTouch(e) {
+    this.data.context.moveTo(e.changedTouches[0].x, e.changedTouches[0].y)
+  },
+  moveTouch(e) {
+    this.data.context.lineTo(e.changedTouches[0].x, e.changedTouches[0].y)
+    this.data.context.stroke()
+    this.data.context.draw(true);
+    this.data.context.moveTo(e.changedTouches[0].x, e.changedTouches[0].y)
+  },
+  // 清空画布
+  clear() {
+    this.data.context.draw()
+  },
+  urlToBase64(img) {
+    return new Promise((resolve, reject) => {
+      wx.getFileSystemManager().readFile({ // 转成base64位
+        filePath: img,
+        encoding: 'base64',
+        success: data => {
+          resolve(data)
+        }
+      })
+    })
+  },
 })

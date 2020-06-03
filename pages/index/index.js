@@ -14,33 +14,36 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    var that = this
     // var BMap = new Bmap.BMapWX({ 
     //   ak: 'MLJBZ-B4AKK-YDPJP-ATJZY-VKXQ2-Q7BTU' 
     // }); 
     // console.log(Bmap)
-    wx.checkSession({
-      success: function (res) {
-        console.log("处于登录装态");
-        that.getStatus()
-      },
-      fail: function (res) {
-        console.log("需要重新登录");
-      }
-    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () {
+    var that = this
+    wx.checkSession({
+      success: function (res) {
+        console.log("处于登录装态");
+        that.getStatus()
+        wx.navigateTo({
+          url: '../verification/index',
+        })
+      },
+      fail: function (res) {
+        console.log("需要重新登录");
+      }
+    })
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

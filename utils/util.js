@@ -56,7 +56,7 @@ const requestPromise = (myUrl, data, method, loadinText) => {
   })
 }
 const getToken = () => {
-  return wx.getStorageSync('token') 
+  return wx.getStorageSync('token')
 }
 module.exports = {
   formatTime: formatTime,
