@@ -76,12 +76,12 @@ Page({
   getLoanList() {
     var that = this
     util.requestPromise('/wx/loan/list').then(res => {
-      console.log(res)
       if (res.data.code == 0) {
         var data = that.normalData(res.data.data)
         that.setData({
           loanList: data
         })
+        wx.hideLoading()
       }
     })
   },

@@ -190,6 +190,7 @@ Page({
                       })
                     }
                   })
+                  wx.hideLoading()
                 }
               })
             }

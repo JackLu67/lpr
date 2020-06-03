@@ -77,7 +77,7 @@ Page({
   },
   startFace() {
     wx.showLoading({
-      title: '识别',
+      title: '识别中',
     })
     wx.startFacialRecognitionVerify({
       // name: that.data.personInfo.personInfo,
@@ -104,6 +104,7 @@ Page({
                 })
               }
             })
+            wx.hideLoading()
           }
         })
       },

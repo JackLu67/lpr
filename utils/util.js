@@ -48,10 +48,16 @@ const requestPromise = (myUrl, data, method, loadinText) => {
         resolve(res)
       },
       complete: res => {
-        setTimeout(() => {
-          wx.hideLoading()
-        }, 2000)
-      }
+        // wx.hideLoading()
+      },
+      fail: (res) => {
+        wx.showToast({
+          title: '请求失败',
+          icon: 'none',
+          duration: 2000
+        })
+      },
+      timeout: 10000
     })
   })
 }

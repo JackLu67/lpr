@@ -13,7 +13,7 @@
           <image src="../../static/images/phone.png"></image>
           <text class="text">手机</text>
         </view>
-        <input id="phoneNum" value="{{form.phoneNum}}" class="weui-input my-input" placeholder-class="place-holder" name="phoneNum" bindinput="bindInput" placeholder="请输入您的手机号" />
+        <input id="phoneNum" value="{{phoneNum}}" class="weui-input my-input" placeholder-class="place-holder" name="phoneNum" bindinput="bindInput" placeholder="请输入您的手机号" />
       </view>
       <view class="item" style="margin-top: 40rpx;">
         <view>
@@ -21,7 +21,7 @@
           <text class="text">验证码</text>
         </view>
         <view class="code-box">
-          <input id="code" value="{{form.code}}" class="weui-input my-input" placeholder-class="place-holder" name="code" bindinput="bindInput" placeholder="请输入验证码" />
+          <input id="code" value="{{code}}" class="weui-input my-input" placeholder-class="place-holder" name="code" bindinput="bindInput" placeholder="请输入验证码" />
           <button size="mini" disabled="{{!flag}}" type="default" plain="true" bindtap="getCode" style="border-color:#e8e7ea;color:#333;font-size: 24rpx;padding: 20rpx 30rpx;">{{codeTetx}}</button>
         </view>
       </view>

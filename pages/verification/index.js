@@ -1,4 +1,5 @@
 // pages/verification/index.js
+const utils = require('../../utils/util.js')
 Page({
 
   /**
@@ -10,10 +11,8 @@ Page({
     n: 1,
     flag: true,
     context: null,
-    form: {
-      phoneNum: null,
-      code: null
-    }
+    phoneNum: null,
+    code: null
   },
 
   /**
@@ -53,11 +52,31 @@ Page({
   getCode() {
     // console.log(1)
     var that = this
-    that.setData({
-      codeTetx: '已发送，'+that.data.i + 's',
-      flag: false
+    if (that.data.phoneNum == null) {
+      wx.showToast({
+        title: '请输入手机号码',
+        icon: 'none',
+        duration: 2000
+      })
+      return false
+    }
+    var data = {
+      phone: that.data.phoneNum
+    }
+    utils.requestPromise('/wx/api/sign/sms',data, 'POST').then(res => {
+      if (res.data.code == 0) {
+        wx.showToast({
+          title: '发送成功,请注意查收',
+          icon: 'none',
+          duration: 2000
+        })
+        that.setData({
+          codeTetx: '已发送，'+that.data.i + 's',
+          flag: false
+        })
+        that.count()
+      }
     })
-    that.count()
   },
   // 提交
   submit() {
@@ -89,9 +108,6 @@ Page({
         })
       }
     }))
-    // wx.navigateTo({
-    //   url: '../end/index',
-    // })
   },
   // 倒计时60S
   count() {
@@ -137,5 +153,5 @@ Page({
         }
       })
     })
-  },
+  }
 })

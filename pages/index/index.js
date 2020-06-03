@@ -17,7 +17,17 @@ Page({
     // var BMap = new Bmap.BMapWX({ 
     //   ak: 'MLJBZ-B4AKK-YDPJP-ATJZY-VKXQ2-Q7BTU' 
     // }); 
-    // console.log(Bmap)
+    var that = this
+    wx.checkSession({
+      success: function (res) {
+        console.log("处于登录装态");
+        that.getStatus()
+        
+      },
+      fail: function (res) {
+        console.log("需要重新登录");
+      }
+    })
   },
 
   /**
@@ -30,19 +40,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that = this
-    wx.checkSession({
-      success: function (res) {
-        console.log("处于登录装态");
-        that.getStatus()
-        wx.navigateTo({
-          url: '../verification/index',
-        })
-      },
-      fail: function (res) {
-        console.log("需要重新登录");
-      }
-    })
+    
   },
 
   /**
@@ -95,7 +93,6 @@ Page({
     }
   },
   checkboxChange(e) {
-    console.log(e.detail.value)
     var that = this
     var checked = e.detail.value[0]
     if (checked == '0') {
@@ -114,7 +111,6 @@ Page({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        console.log(res.code)
         var obj = {}
         obj.code = res.code
         obj.userAvatarUrl = data.avatarUrl
@@ -127,7 +123,8 @@ Page({
         utils.requestPromise('wx/login', obj, 'POST', '登录中')
           .then(res => {
             wx.setStorageSync('token', res.header.third_session)
-            that.openView(res.data.scene)
+            that.openView(res.data.data.scene)
+            wx.hideLoading()
           })
       }
     })
@@ -135,10 +132,10 @@ Page({
   getNotice() {
     var that = this
     utils.requestPromise('/wx/resource/notice').then(res => {
-      console.log(res)
       that.setData({
         html: res.data.msg
       })
+      wx.hideLoading()
     })
   },
   getStatus() {
@@ -147,6 +144,7 @@ Page({
       if (res.data.code == 0) {
         var scene = res.data.data.scene
         that.openView(scene)
+        wx.hideLoading()
       }
     })
   },
