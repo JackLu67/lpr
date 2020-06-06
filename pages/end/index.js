@@ -1,18 +1,25 @@
 // pages/end/index.js
+const utils = require('../../utils/util.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    fileType: null,
+    uuid: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var fileType = options.fileType
+    var uuid = options.uuid
+    this.setData({
+      fileType: fileType,
+      uuid: uuid
+    })
   },
 
   /**
@@ -64,7 +71,34 @@ Page({
 
   },
   viewContract() {
-    
+    var that = this
+    var data = {
+      fileType: that.data.fileType,
+      uuid: that.data.uuid
+    }
+    utils.requestPromise('/wx/api/sign/create/file', data, 'POST').then((res) => {
+      var data = {
+        content: res.data.msg
+      }
+      wx.downloadFile({
+        header: {
+          'third_session': utils.getToken()
+        },
+        url: 'http://10.126.8.179:12801/hn_lpr/wx/api/sign/file/show?content=' + data.content,
+        // url: 'http://soft.anyihexin.com:20000/hn_lpr/wx/api/sign/file/show?content=' + data.content,
+        success: function (res) {
+          console.log(data, res)
+          const filePath = res.tempFilePath
+          wx.openDocument({
+            filePath: filePath,
+            fileType: 'pdf',
+            success: function (res) {
+              console.log('打开文档成功')
+            }
+          })
+        }
+      })
+    })
   },
   end() {
     wx.navigateTo({

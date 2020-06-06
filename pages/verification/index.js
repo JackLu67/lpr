@@ -22,10 +22,20 @@ Page({
    */
   onLoad: function (options) {
     var type = options.type
-    console.log(type)
-    this.setData({
-      type: type
-    })
+    var item = wx.getStorageSync('loanItem')
+    console.log(item)
+    if (item.dutyType == '借款人') {
+      this.setData({
+        type: type,
+        phoneNum: item.borrowerPhone
+      })
+    } else if (item.dutyType == '担保人'){
+      this.setData({
+        type: type,
+        phoneNum: item.suretyPhone
+      })
+    }
+   
   },
 
   /**
@@ -125,7 +135,7 @@ Page({
           utils.requestPromise('/wx/api/sign/contract', data, 'POST').then(res => {
             if(res.data.code == 0) {
               wx.navigateTo({
-                url: '../end/index',
+                url: '../end/index?fileType=' + that.data.type + '&uuid=' + item.uuid,
               })
             }
           })

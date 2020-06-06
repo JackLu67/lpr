@@ -26,7 +26,6 @@ Page({
       }
     })
     utils.getLocation().then(res => {
-      console.log(res)
       app.globalData.latitude = res.latitude
       app.globalData.longitude = res.longitude
       that.addressResolution(res.latitude, res.longitude)
@@ -112,7 +111,7 @@ Page({
     // 登录
     wx.login({
       success: res => {
-        console.log(res.code)
+        console.log(data)
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         var obj = {}
         obj.code = res.code
@@ -121,7 +120,7 @@ Page({
         obj.userCountry = data.country
         obj.userGender = data.gender
         obj.userLanguage = data.language
-        obj.userNickName = '测试'
+        obj.userNickName = data.nickName
         obj.userProvince = data.province
         utils.requestPromise('wx/login', obj, 'POST', '登录中')
           .then(res => {
