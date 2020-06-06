@@ -13,8 +13,8 @@
         </view>
         <view class="top-right">
           <button wx:if="{{item.signState == '00'}}" size="mini"  type="primary" plain="true" data-id="{{item.uuid}}" bindtap="openPageInfo">去转换</button>
-          <button wx:if="{{item.signState == '10' && item.dutyType =='借款人'}}" size="mini"  type="primary" plain="true" data-id="{{item.uuid}}" bindtap="openPageInfo">去转换</button>
-          <button wx:if="{{item.signState == '11' && item.dutyType =='担保人'}}" size="mini"  type="primary" plain="true" data-id="{{item.uuid}}" bindtap="openPageInfo">去转换</button>
+          <button wx:elif="{{item.signState == '10' && item.dutyType =='借款人'}}" size="mini"  type="primary" plain="true" data-id="{{item.uuid}}" bindtap="openPageInfo">去转换</button>
+          <button wx:elif="{{item.signState == '11' && item.dutyType =='担保人'}}" size="mini"  type="primary" plain="true" data-id="{{item.uuid}}" bindtap="openPageInfo">去转换</button>
           <button data-id="{{item.uuid}}" wx:else size="mini"  type="default" bindtap="show" plain="true">已转换</button>
         </view>
       </view>

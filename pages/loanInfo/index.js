@@ -31,6 +31,7 @@ Page({
   onLoad: function (options) {
     var isShow = options.isShow ? options.isShow : false
     var item = wx.getStorageSync('loanItem')
+    console.log(item)
     this.setData({
       itemInfo: item,
       flag: !isShow

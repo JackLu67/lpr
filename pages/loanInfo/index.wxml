@@ -60,32 +60,34 @@
         </picker>
         <image src="../../static/images/down.png" style="width:50rpx;height:50rpx"></image>
       </view>
-      <view class="item">
-        <text class="title">调整后利率方式</text>
-        <input disabled="true" class="weui-input my-input" name="input" value="{{itemInfo.conversionWay}}" />
-      </view>
-      <view wx:if="{{itemInfo.conversionWay == '固定利率'}}">
-        <view class="item">
-          <text class="title">调整后利率</text>
-          <input disabled="true" class="weui-input my-input" name="input" value="{{itemInfo.strikeRate}}" />
+      <view wx:if="{{itemInfo.signState !== '00'}}">
+        <view wx:if="{{itemInfo.conversionWay == '固定利率'}}">
+          <view class="item">
+            <text class="title">调整后利率方式</text>
+            <input disabled="true" class="weui-input my-input" name="input" value="{{itemInfo.conversionWay}}" />
+          </view>
+          <view class="item">
+            <text class="title">调整后利率</text>
+            <input disabled="true" class="weui-input my-input" name="input" value="{{itemInfo.strikeRate}}" />
+          </view>
         </view>
-      </view>
-      <view wx:else>
-        <view class="item">
-          <text class="title">LPR期限</text>
-          <input disabled="true" class="weui-input my-input" name="input" value="{{itemInfo.lprDue}}" />
-        </view>
-        <view class="item">
-          <text class="title">LPR值</text>
-          <input disabled="true" class="weui-input my-input" name="input" value="{{itemInfo.lprValue}}" />
-        </view>
-        <view class="item">
-          <text class="title">调整后基点</text>
-          <input disabled="true" class="weui-input my-input" name="input" value="{{itemInfo.baseRate}}" />
-        </view>
-        <view class="item">
-          <text class="title">浮动利率生效日</text>
-          <input disabled="true" class="weui-input my-input" name="input" value="{{itemInfo.floatRateEffectDate}}" />
+        <view wx:elseif="{{itemInfo.conversionWay == '浮动利率'}}">
+          <view class="item">
+            <text class="title">LPR期限</text>
+            <input disabled="true" class="weui-input my-input" name="input" value="{{itemInfo.lprDue}}" />
+          </view>
+          <view class="item">
+            <text class="title">LPR值</text>
+            <input disabled="true" class="weui-input my-input" name="input" value="{{itemInfo.lprValue}}" />
+          </view>
+          <view class="item">
+            <text class="title">调整后基点</text>
+            <input disabled="true" class="weui-input my-input" name="input" value="{{itemInfo.baseRate}}" />
+          </view>
+          <view class="item">
+            <text class="title">浮动利率生效日</text>
+            <input disabled="true" class="weui-input my-input" name="input" value="{{itemInfo.floatRateEffectDate}}" />
+          </view>
         </view>
       </view>
     </form>

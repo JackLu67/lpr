@@ -22,6 +22,7 @@ Page({
    */
   onLoad: function (options) {
     var type = options.type
+    console.log(type)
     this.setData({
       type: type
     })
