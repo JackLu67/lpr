@@ -6,7 +6,6 @@
     "pages/person/index",
     "pages/loanlist/index",
     "pages/loanInfo/index",
-    "pages/agreement/index",
     "pages/verification/index",
     "pages/end/index",
     "pages/face/index"

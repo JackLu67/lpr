@@ -1,5 +1,0 @@
-<!--pages/authentication/index.wxml-->
-<view class="container">
-  <image class="page-bgn" src="../../static/images/pageBgn.png"></image>
-  <web-view src="https://www.baidu.com/"></web-view>
-</view>
