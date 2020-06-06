@@ -26,7 +26,7 @@ page {
   width: 690rpx;
   height: 340rpx;
   border-radius: 10rpx;
-  background-color: #fff;
+  background-color: transparent;
   border: 1rpx solid #ed1e25;
 }
 .form-box {

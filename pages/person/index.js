@@ -1,4 +1,5 @@
 // pages/person/index.js
+const app = getApp()
 const utils = require('../../utils/util.js')
 Page({
 
@@ -12,61 +13,29 @@ Page({
       idCard: '',
       expiryDate: '',
       koseki: ''
-    }
+    },
+    latitude: null,
+    longitude: null,
+    flag: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this
     var person = wx.getStorageSync('data')
     if (person != "") {
       this.setData({
         personInfo: person
       })
     }
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
+    utils.getLocation().then(res => {
+      that.setData({
+        latitude: res.latitude,
+        longitude: res.longitude
+      })
+    })
   },
 
   /**
@@ -75,20 +44,17 @@ Page({
   onShareAppMessage: function () {
 
   },
-  startFace() {
-    wx.showLoading({
-      title: '识别中',
-    })
-    wx.startFacialRecognitionVerify({
-      // name: that.data.personInfo.personInfo,
-      // idCardNumber: that.data.personInfo.idCard,
-      checkAliveType: 2,
-      name: '陆世杰',
-      idCardNumber: '522423199407163612',
-      success: (res) => {
-        console.log(res)
+  submit() {
+    var that = this
+    var data = that.data.personInfo
+    data.latitude = app.globalData.latitude
+    data.longitude = app.globalData.longitude
+    data.location = app.globalData.address
+    // 发送识别身份数据
+    utils.requestPromise('wx/user/ocr/save', data, 'POST').then(res => {
+      if (res.data.code == 0) {
         var data = {
-          scene: 2,
+          scene: 1,
           remark: 'ok',
           state: 1
         }
@@ -96,22 +62,15 @@ Page({
         utils.requestPromise('wx/scene/save', data, 'POST').then(res => {
           if (res.data.code == 0) {
             wx.showToast({
-              title: '人脸认证通过!',
+              title: '身份证认证成功!',
               icon: 'none',
               success: () => {
                 wx.navigateTo({
-                  url: '../loanlist/index',
+                  url: '../face/index',
                 })
               }
             })
-            wx.hideLoading()
           }
-        })
-      },
-      fail: (res) => {
-        wx.showToast({
-          title: res.errMsg,
-          icon: 'none'
         })
       }
     })

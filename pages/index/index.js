@@ -2,7 +2,7 @@
 //获取应用实例
 const app = getApp()
 const utils = require('../../utils/util.js')
-const Bmap = require('../../static/js/bmap.js')
+const QMap = require('../../static/js/qqmap-wx-jssdk.min.js')
 Page({
   data: {
     checked: 0,
@@ -14,19 +14,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    // var BMap = new Bmap.BMapWX({ 
-    //   ak: 'MLJBZ-B4AKK-YDPJP-ATJZY-VKXQ2-Q7BTU' 
-    // }); 
     var that = this
+    that.getNotice()
     wx.checkSession({
       success: function (res) {
         console.log("处于登录装态");
         that.getStatus()
-        
       },
       fail: function (res) {
         console.log("需要重新登录");
       }
+    })
+    utils.getLocation().then(res => {
+      console.log(res)
+      app.globalData.latitude = res.latitude
+      app.globalData.longitude = res.longitude
+      that.addressResolution(res.latitude, res.longitude)
     })
   },
 
@@ -81,7 +84,6 @@ Page({
   bindGetUserInfo(e) {
     var that = this
     app.globalData.userInfo = e.detail.userInfo
-    console.log(app.globalData.userInfo)
     if (that.data.checked == '1') {
       that.login(e.detail.userInfo)
     } else {
@@ -110,6 +112,7 @@ Page({
     // 登录
     wx.login({
       success: res => {
+        console.log(res.code)
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         var obj = {}
         obj.code = res.code
@@ -124,7 +127,6 @@ Page({
           .then(res => {
             wx.setStorageSync('token', res.header.third_session)
             that.openView(res.data.data.scene)
-            wx.hideLoading()
           })
       }
     })
@@ -135,7 +137,6 @@ Page({
       that.setData({
         html: res.data.msg
       })
-      wx.hideLoading()
     })
   },
   getStatus() {
@@ -144,7 +145,6 @@ Page({
       if (res.data.code == 0) {
         var scene = res.data.data.scene
         that.openView(scene)
-        wx.hideLoading()
       }
     })
   },
@@ -155,12 +155,30 @@ Page({
       })
     } else if(scene == '2') {
       wx.navigateTo({
-        url: '../person/index',
+        url: '../face/index',
       })
     }else {
       wx.navigateTo({
         url: '../loanlist/index',
       })
     }
+  },
+  addressResolution(latitude, longitude) {
+    var map = new QMap({
+      key: 'LWTBZ-53GW3-Z6N3D-3YRQY-LA6LZ-S7BMV'
+    })
+    map.reverseGeocoder({
+      location: {
+        latitude: latitude,
+        longitude: longitude
+      },
+      success: res => {
+        console.log(res)
+        app.globalData.address = res.result.address
+      },
+      fail: res => {
+        console.log(res)
+      }
+    })
   }
 })

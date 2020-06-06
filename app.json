@@ -8,7 +8,8 @@
     "pages/loanInfo/index",
     "pages/agreement/index",
     "pages/verification/index",
-    "pages/end/index"
+    "pages/end/index",
+    "pages/face/index"
   ],
   "permission": {
     "scope.userLocation": {

@@ -15,23 +15,13 @@ Page({
     positiveImgFlag: false,
     reverseImgFlag: false,
     isPositive: true, // 判断是否是正面
-    cameraText: '拍摄正面照',
-    latitude: null,
-    longitude: null
+    cameraText: '拍摄正面照'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this
-    that.getLocation().then(res => {
-      console.log(res, '定位成功')
-      that.setData({
-        latitude: res.latitude,
-        longitude: res.longitude
-      })
-    })
   },
 
   /**
@@ -166,47 +156,33 @@ Page({
       // OCR 识别
       utils.requestPromise('wx/api/ocr', data, 'POST').then(res => {
         if (res.data.code == 0) {
+          var obj = res.data.data
+          obj.idCardFrontUrl = that.data.positiveImg
+          obj.idCardReverseUrl = that.data.ReverseImg
           wx.setStorageSync('data', res.data.data)
-          var data = res.data.data
-          data.latitude = that.data.latitude
-          data.longitude = that.data.longitude
-          // 发送识别身份数据
-          utils.requestPromise('wx/user/ocr/save', data, 'POST').then(res => {
-            if (res.data.code == 0) {
-              var data = {
-                scene: 1,
-                remark: 'ok',
-                state: 1
-              }
-              // 更新场景状态
-              utils.requestPromise('wx/scene/save', data, 'POST').then(res => {
-                if (res.data.code == 0) {
-                  wx.showToast({
-                    title: '身份证认证成功!',
-                    icon: 'none',
-                    success: () => {
-                      wx.navigateTo({
-                        url: '../person/index',
-                      })
-                    }
-                  })
-                  wx.hideLoading()
-                }
+          wx.showToast({
+            title: 'OCR识别成功',
+            icon: 'none',
+            duration: 2000,
+            success: res=> {
+              wx.navigateTo({
+                url: '../person/index',
               })
             }
           })
-          
         } else {
           wx.showToast({
             title: '身份证OCR识别失败,请重试!',
-            icon: 'none'
+            icon: 'none',
+            duration: 2000
           })
         }
       })
     } else {
       wx.showToast({
         title: '请先上传身份证照片',
-        icon: 'none'
+        icon: 'none',
+        duration: 2000
       })
     }
   },
@@ -222,16 +198,6 @@ Page({
           resolve(data)
         }
       })
-    })
-  },
-  getLocation() {
-    return new Promise((resolve, reject) => {
-      wx.getLocation({
-        type: 'wgs84',
-        success (res) {
-          resolve(res)
-        }
-       })
     })
   }
 })

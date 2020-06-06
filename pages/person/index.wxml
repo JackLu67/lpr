@@ -26,6 +26,6 @@
     </form>
   </view>
   <view>
-    <button class="btn" bindtap="startFace">开始人脸识别</button>
+    <button class="btn" bindtap="submit">下一步</button>
   </view>
 </view>

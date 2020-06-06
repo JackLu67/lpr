@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    loanList: []
+    loanList: [],
+    isShow: true
   },
 
   /**
@@ -67,7 +68,7 @@ Page({
   openPageInfo(e) {
     var that = this
     var uuid = e.currentTarget.dataset.id
-    var item = that.data.loanList.find(item => item = uuid)
+    var item = that.data.loanList.find(item => item.uuid == uuid)
     wx.setStorageSync('loanItem', item)
     wx.navigateTo({
       url: '../loanInfo/index',
@@ -81,23 +82,33 @@ Page({
         that.setData({
           loanList: data
         })
-        wx.hideLoading()
       }
     })
   },
   normalData(data) {
     var arr = {
       '00': '待签署',
-      1: '主贷人已签署',
-      2: '担保人已签署',
-      3: '已签署'
+      '10': '主贷人已签署',
+      '11': '待担保人签署',
+      '12': '待贷款方签署',
+      '20': '签署完成'
     }
     data.map(item => {
       if (item.signState == null) {
-        item.signState = 0
+        item.signState = '00'
       }
       item.signStateName = arr[item.signState]
     })
     return data
+  },
+  show(e) {
+    var that = this
+    var uuid = e.currentTarget.dataset.id
+    var item = that.data.loanList.find(item => item.uuid == uuid)
+    wx.setStorageSync('loanItem', item)
+    var isShow = this.data.isShow
+    wx.navigateTo({
+      url: '../loanInfo/index?isShow=' + isShow
+    })
   }
 })

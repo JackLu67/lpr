@@ -1,0 +1,11 @@
+<!--pages/face/index.wxml-->
+<view class="container">
+  <image class="page-bgn" src="../../static/images/pageBgn.png"></image>
+  <view class="face-box">
+    <image class="face-img" src="../../static/images/face.png"></image>
+  </view>
+  <view>
+    <button wx:if="{{flag}}" class="btn" bindtap="startFace">开始识别</button>
+    <button wx:else class="btn" bindtap="complete">完成</button>
+  </view>
+</view>

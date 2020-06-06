@@ -69,3 +69,8 @@ page {
 .amount-num {
   color: #333;
 }
+.none {
+  text-align: center;
+  padding-top: 40rpx;
+  font-size: 28rpx;
+}

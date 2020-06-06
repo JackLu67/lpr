@@ -6,6 +6,7 @@
     <view class="end-title">房贷LPR转换完成！</view>
   </view>
   <view>
+    <button class="btn" bindtap="viewContract">查看合同</button>
     <button class="btn" bindtap="end">确定</button>
   </view>
 </view>

@@ -26,6 +26,9 @@ page {
   font-size: 24rpx;
   display: inline-block;
 }
+.main-h3 {
+  text-align: center;
+}
 .sub-title {
   margin-top: 20rpx;
   display: inline-block;

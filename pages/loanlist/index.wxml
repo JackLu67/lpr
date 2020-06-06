@@ -1,10 +1,10 @@
 <view class="container">
   <image class="page-bgn" src="../../static/images/pageBgn.png"></image>
-  <view class="list-box">
+  <view wx:if="{{isShow}}" class="list-box">
     <view class="item-box" wx:for="{{loanList}}" wx:key="idx" wx:for-item="item">
       <view class="item-top">
         <view class="top-left">
-          <view class="title">一手住房</view>
+          <view class="title">{{item.cusName}}</view>
           <view class="loan-person">
             <text>主贷人：{{item.borrowerName}}</text>
             <text wx:if="{{!!item.suretyName}}">共同借贷人：{{item.suretyName}}</text>
@@ -12,8 +12,10 @@
           <view class="loan-status">状态： <text style="color:#ed1e25">{{item.signStateName}}</text></view>
         </view>
         <view class="top-right">
-          <button wx:if="{{item.signStateName == '待签署'}}" size="mini"  type="primary" plain="true" data-id="{{item.uuid}}" bindtap="openPageInfo">去转换</button>
-          <button wx:else size="mini"  type="default" plain="true">已转换</button>
+          <button wx:if="{{item.signState == '00'}}" size="mini"  type="primary" plain="true" data-id="{{item.uuid}}" bindtap="openPageInfo">去转换</button>
+          <button wx:if="{{item.signState == '10' && item.dutyType =='借款人'}}" size="mini"  type="primary" plain="true" data-id="{{item.uuid}}" bindtap="openPageInfo">去转换</button>
+          <button wx:if="{{item.signState == '11' && item.dutyType =='担保人'}}" size="mini"  type="primary" plain="true" data-id="{{item.uuid}}" bindtap="openPageInfo">去转换</button>
+          <button data-id="{{item.uuid}}" wx:else size="mini"  type="default" bindtap="show" plain="true">已转换</button>
         </view>
       </view>
       <view class="item-bottom">
@@ -21,5 +23,8 @@
         <text class="amount-num">¥{{item.loanMoney}}</text>
       </view>
     </view>
+  </view>
+  <view wx:else class="none">
+    暂无数据
   </view>
 </view>

@@ -23,8 +23,8 @@ const requestPromise = (myUrl, data, method, loadinText) => {
   loadinText = loadinText == undefined ? '加载中' : loadinText
   wx.showLoading({title: loadinText, mask: true})
   // 返回一个Promise实例对象
-  // var baseUrl = 'http://10.126.8.106:12801/hn_lpr/'
-  var baseUrl = 'http://soft.anyihexin.com:20000/hn_lpr/'
+  var baseUrl = 'http://10.126.8.179:12801/hn_lpr/'
+  // var baseUrl = 'http://soft.anyihexin.com:20000/hn_lpr/'
   return new Promise((resolve, reject) => {
     wx.request({
       url: baseUrl + myUrl,
@@ -34,7 +34,7 @@ const requestPromise = (myUrl, data, method, loadinText) => {
         'third_session': getToken()
       },
       data: data == undefined ? null : data,
-      success: res => {
+      success: (res) => {
         if (res.data.code == 500 || res.data.code == 301) {
           if (data == '1') {
             return
@@ -47,8 +47,8 @@ const requestPromise = (myUrl, data, method, loadinText) => {
         }
         resolve(res)
       },
-      complete: res => {
-        // wx.hideLoading()
+      complete: (res) => {
+        wx.hideLoading()
       },
       fail: (res) => {
         wx.showToast({
@@ -64,8 +64,20 @@ const requestPromise = (myUrl, data, method, loadinText) => {
 const getToken = () => {
   return wx.getStorageSync('token')
 }
+const getLocation = () => {
+  return new Promise((resolve, reject) => {
+    wx.getLocation({
+      type: 'wgs84',
+      isHighAccuracy: true,
+      success (res) {
+        resolve(res)
+      }
+     })
+  })
+}
 module.exports = {
   formatTime: formatTime,
   requestPromise: requestPromise,
-  getToken: getToken
+  getToken: getToken,
+  getLocation: getLocation
 }

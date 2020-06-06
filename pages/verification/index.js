@@ -1,4 +1,5 @@
 // pages/verification/index.js
+const app = getApp()
 const utils = require('../../utils/util.js')
 Page({
 
@@ -12,14 +13,18 @@ Page({
     flag: true,
     context: null,
     phoneNum: null,
-    code: null
+    code: null,
+    type: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var type = options.type
+    this.setData({
+      type: type
+    })
   },
 
   /**
@@ -35,6 +40,7 @@ Page({
   onShow: function () {
     var that = this
     var context = wx.createCanvasContext('myCanvas')
+    context.setLineWidth(2)
     that.setData({
       context: context
     })
@@ -79,7 +85,7 @@ Page({
     })
   },
   // 提交
-  submit() {
+  submit() { 
     var that = this
     var img = null
     if (that.data.phoneNum == null) {
@@ -99,12 +105,29 @@ Page({
     that.data.context.draw(true, wx.canvasToTempFilePath({
       x: 0,
       y: 0,
-      fileType: 'jpg',
+      fileType: 'png',
       canvasId: 'myCanvas',
       success: res => {
         that.urlToBase64(res.tempFilePath).then(res => {
-          img = 'data:image/jpeg;base64,' + res.data
-          console.log(img)
+          img = 'data:image/png;base64,' + res.data
+          var item = wx.getStorageSync('loanItem')
+          var data = {
+            fileType: that.data.type,
+            latitude: app.globalData.latitude,
+            longitude: app.globalData.longitude,
+            signAddr:  app.globalData.address,
+            signSeal: img,
+            smsCode: that.data.code,
+            phoneNum: that.data.phoneNum,
+            uuid: item.uuid
+          }
+          utils.requestPromise('/wx/api/sign/contract', data, 'POST').then(res => {
+            if(res.data.code == 0) {
+              wx.navigateTo({
+                url: '../end/index',
+              })
+            }
+          })
         })
       }
     }))

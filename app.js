@@ -29,6 +29,9 @@ App({
   },
   globalData: {
     userInfo: null,
-    token: null
+    token: null,
+    latitude: null,
+    longitude: null,
+    address: null
   }
 })
