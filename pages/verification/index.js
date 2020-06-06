@@ -14,7 +14,8 @@ Page({
     context: null,
     phoneNum: null,
     code: null,
-    type: null
+    type: null,
+    pageShow: true
   },
 
   /**
@@ -35,14 +36,13 @@ Page({
         phoneNum: item.suretyPhone
       })
     }
-   
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**
@@ -50,12 +50,18 @@ Page({
    */
   onShow: function () {
     var that = this
-    var context = wx.createCanvasContext('myCanvas')
-    context.setLineWidth(2)
-    that.setData({
-      context: context
-    })
-    context.draw()
+    if (that.data.pageShow) {
+      var context = wx.createCanvasContext('myCanvas')
+      context.setLineWidth(2)
+      that.setData({
+        context: context
+      })
+      context.draw()
+      that.setData({
+        pageShow: false
+      })
+    }
+    
   },
   // input与data数据双向绑定
   bindInput(e) {
@@ -174,7 +180,7 @@ Page({
     this.data.context.moveTo(e.changedTouches[0].x, e.changedTouches[0].y)
   },
   // 清空画布
-  clear() {
+  clearCanvas() {
     this.data.context.draw()
   },
   urlToBase64(img) {
