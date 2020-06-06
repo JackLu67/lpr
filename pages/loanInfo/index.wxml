@@ -82,7 +82,7 @@
           </view>
           <view class="item">
             <text class="title">LPR值</text>
-            <input disabled="true" class="weui-input my-input" name="input" value="{{itemInfo.lprValue}}" />
+            <input disabled="true" class="weui-input my-input" name="input" value="{{itemInfo.lprValue}}%" />
           </view>
           <view class="item">
             <text class="title">调整后基点</text>

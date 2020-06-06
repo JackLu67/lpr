@@ -24,7 +24,8 @@ page {
 }
 .sign-content {
   width: 690rpx;
-  height: 340rpx;
+  /* height: 340rpx; */
+  height: 246rpx;
   border-radius: 10rpx;
   background-color: transparent;
   border: 1rpx solid #ed1e25;

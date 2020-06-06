@@ -41,7 +41,8 @@ const requestPromise = (myUrl, data, method, loadinText) => {
           }
           wx.showToast({
             title: res.data.msg,
-            icon: 'none'
+            icon: 'none',
+            duration: 2000
           })
           return
         }

@@ -122,11 +122,14 @@ Page({
     that.data.context.draw(true, wx.canvasToTempFilePath({
       x: 0,
       y: 0,
+      // width: '350',
+      // height: '125',
       fileType: 'png',
       canvasId: 'myCanvas',
       success: res => {
         that.urlToBase64(res.tempFilePath).then(res => {
           img = 'data:image/png;base64,' + res.data
+          console.log(img)
           var item = wx.getStorageSync('loanItem')
           var data = {
             fileType: that.data.type,
