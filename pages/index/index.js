@@ -164,7 +164,8 @@ Page({
   },
   addressResolution(latitude, longitude) {
     var map = new QMap({
-      key: 'LWTBZ-53GW3-Z6N3D-3YRQY-LA6LZ-S7BMV'
+      // key: 'LWTBZ-53GW3-Z6N3D-3YRQY-LA6LZ-S7BMV'
+      key: 'MLJBZ-B4AKK-YDPJP-ATJZY-VKXQ2-Q7BTU'
     })
     map.reverseGeocoder({
       location: {

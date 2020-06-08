@@ -23,7 +23,7 @@ Page({
     wx.startFacialRecognitionVerify({
       // name: that.data.personInfo.personInfo,
       // idCardNumber: that.data.personInfo.idCard,
-      checkAliveType: 2,
+      checkAliveType: 1,
       name: '陆世杰',
       idCardNumber: '522423199407163612',
       success: (res) => {

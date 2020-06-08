@@ -1,6 +1,6 @@
 <view class="container">
   <image class="page-bgn" src="../../static/images/pageBgn.png"></image>
-  <view wx:if="{{isShow}}" class="list-box">
+  <view wx:if="{{loanList.length > 0}}" class="list-box">
     <view class="item-box" wx:for="{{loanList}}" wx:key="idx" wx:for-item="item">
       <view class="item-top">
         <view class="top-left">

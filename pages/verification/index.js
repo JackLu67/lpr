@@ -122,8 +122,6 @@ Page({
     that.data.context.draw(true, wx.canvasToTempFilePath({
       x: 0,
       y: 0,
-      // width: '350',
-      // height: '125',
       fileType: 'png',
       canvasId: 'myCanvas',
       success: res => {

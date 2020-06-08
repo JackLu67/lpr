@@ -31,7 +31,7 @@ Page({
   onLoad: function (options) {
     var isShow = options.isShow ? options.isShow : false
     var item = wx.getStorageSync('loanItem')
-    console.log(item)
+    // console.log(item)
     this.setData({
       itemInfo: item,
       flag: !isShow
@@ -83,7 +83,7 @@ Page({
         header: {
           'third_session': utils.getToken()
         },
-        url: 'http://10.126.8.179:12801/hn_lpr/wx/api/sign/file/show?content=' + data.content,
+        url: 'https://www.anyihexin.com/lpr_cl/wx/api/sign/file/show?content=' + data.content,
         // url: 'http://soft.anyihexin.com:20000/hn_lpr/wx/api/sign/file/show?content=' + data.content,
         success: function (res) {
           console.log(data, res)

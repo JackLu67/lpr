@@ -23,8 +23,8 @@ const requestPromise = (myUrl, data, method, loadinText) => {
   loadinText = loadinText == undefined ? '加载中' : loadinText
   wx.showLoading({title: loadinText, mask: true})
   // 返回一个Promise实例对象
-  var baseUrl = 'http://10.126.8.179:12801/hn_lpr/'
-  // var baseUrl = 'http://soft.anyihexin.com:20000/hn_lpr/'
+  // var baseUrl = 'http://10.126.8.179:12801/hn_lpr/'
+  var baseUrl = 'https://www.anyihexin.com/lpr_cl/'
   return new Promise((resolve, reject) => {
     wx.request({
       url: baseUrl + myUrl,
