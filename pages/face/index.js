@@ -1,18 +1,29 @@
 // pages/face/index.js
+const utils = require('../../utils/util.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    flag: true
+    flag: true,
+    personInfo: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    utils.requestPromise('wx/user/identity', null, 'POST').then(res => {
+      var person = {}
+      if(res.data.code == 0) {
+        person.name = res.data.data.name
+        person.idCard = res.data.data.idCard
+        this.setData({
+          personInfo: person
+        })
+      }
+    })
   },
   startFace() {
     var that = this
@@ -21,22 +32,27 @@ Page({
     })
 
     wx.startFacialRecognitionVerify({
-      // name: that.data.personInfo.personInfo,
-      // idCardNumber: that.data.personInfo.idCard,
+      name: that.data.personInfo.name,
+      idCardNumber: that.data.personInfo.idCard,
       checkAliveType: 1,
-      name: '陆世杰',
-      idCardNumber: '522423199407163612',
       success: (res) => {
-        wx.showToast({
-          title: '人脸认证通过!',
-          icon: 'none',
-          duration: 2000,
-          success: () => {
-            that.setData({
-              flag: false
+        var data = {}
+        data.verifyResult = res.verifyResult
+        utils.requestPromise('/wx/user/face/save', data, 'POST').then(res => {
+          if (res.data.code == 0) {
+            wx.showToast({
+              title: '人脸认证通过!',
+              icon: 'none',
+              duration: 2000,
+              success: () => {
+                that.setData({
+                  flag: false
+                })
+              }
             })
           }
         })
+        
       },
       fail: (res) => {
         wx.showToast({

@@ -46,33 +46,42 @@ Page({
   },
   submit() {
     var that = this
-    var data = that.data.personInfo
-    data.latitude = app.globalData.latitude
-    data.longitude = app.globalData.longitude
-    data.location = app.globalData.address
-    // 发送识别身份数据
-    utils.requestPromise('wx/user/ocr/save', data, 'POST').then(res => {
-      if (res.data.code == 0) {
-        var data = {
-          scene: 1,
-          remark: 'ok',
-          state: 1
-        }
-        // 更新场景状态
-        utils.requestPromise('wx/scene/save', data, 'POST').then(res => {
-          if (res.data.code == 0) {
-            wx.showToast({
-              title: '身份证认证成功!',
-              icon: 'none',
-              success: () => {
-                wx.navigateTo({
-                  url: '../face/index',
-                })
+    wx.showModal({
+      title: '提示',
+      content: '是否提交？请核对身份信息是否正确！',
+      success: (res) => {
+        if (res.confirm) {
+          var data = that.data.personInfo
+          data.latitude = app.globalData.latitude
+          data.longitude = app.globalData.longitude
+          data.location = app.globalData.address
+          // 发送识别身份数据
+          utils.requestPromise('wx/user/ocr/save', data, 'POST').then(res => {
+            if (res.data.code == 0) {
+              var data = {
+                scene: 1,
+                remark: 'ok',
+                state: 1
               }
-            })
-          }
-        })
+              // 更新场景状态
+              utils.requestPromise('wx/scene/save', data, 'POST').then(res => {
+                if (res.data.code == 0) {
+                  wx.showToast({
+                    title: '身份证认证成功!',
+                    icon: 'none',
+                    success: () => {
+                      wx.navigateTo({
+                        url: '../face/index',
+                      })
+                    }
+                  })
+                }
+              })
+            }
+          })
+        }
       }
     })
+    
   }
 })

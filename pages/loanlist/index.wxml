@@ -25,6 +25,6 @@
     </view>
   </view>
   <view wx:else class="none">
-    暂无数据
+    您好,您在我行暂无需要LPR转换的贷款信息.
   </view>
 </view>

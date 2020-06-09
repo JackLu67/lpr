@@ -83,10 +83,8 @@ Page({
         header: {
           'third_session': utils.getToken()
         },
-        url: 'https://www.anyihexin.com/lpr_cl/wx/api/sign/file/show?content=' + data.content,
-        // url: 'http://soft.anyihexin.com:20000/hn_lpr/wx/api/sign/file/show?content=' + data.content,
+        url: 'https://www.anyihexin.com/lpr_zjj/wx/api/sign/file/show?content=' + data.content,
         success: function (res) {
-          console.log(data, res)
           const filePath = res.tempFilePath
           wx.openDocument({
             filePath: filePath,

@@ -127,7 +127,6 @@ Page({
       success: res => {
         that.urlToBase64(res.tempFilePath).then(res => {
           img = 'data:image/png;base64,' + res.data
-          console.log(img)
           var item = wx.getStorageSync('loanItem')
           var data = {
             fileType: that.data.type,
@@ -173,8 +172,10 @@ Page({
   // 开始签字，记录坐标
   startTouch(e) {
     this.data.context.moveTo(e.changedTouches[0].x, e.changedTouches[0].y)
+    this.data.context.setLineWidth(2)
   },
   moveTouch(e) {
+    this.data.context.setLineWidth(2)
     this.data.context.lineTo(e.changedTouches[0].x, e.changedTouches[0].y)
     this.data.context.stroke()
     this.data.context.draw(true);

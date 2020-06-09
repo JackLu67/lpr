@@ -25,7 +25,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.11.1",
-	"appid": "wxac204d8f8e9c6951",
+	"appid": "wx9096893fa52c3391",
 	"projectname": "lpr",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -42,13 +42,28 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
-		"miniprogram": {
+		"gamePlugin": {
 			"current": -1,
 			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "pages/authentication/index",
+					"pathName": "pages/authentication/index",
+					"scene": null
+				}
+			]
 		}
 	}
 }
